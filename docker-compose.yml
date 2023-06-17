@@ -1,0 +1,10 @@
+services:
+  tap_stat_generator_app:
+    build: '.'
+    volumes:
+      - '.:/app'
+    ports:
+      - '3000:3000'
+    command: bash -c "rails s -b 0.0.0.0"
+    # command: bash -c "gem install rails && rails new . --api"
+    container_name: tap_stat_generator_app
