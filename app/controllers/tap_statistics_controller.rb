@@ -18,8 +18,10 @@ class TapStatisticsController < ApplicationController
     @tap_statistic = TapStatistic.new(tap_statistic_params)
 
     if @tap_statistic.save
-      
-      render json: @tap_statistic, status: :created, location: @tap_statistic
+
+      # render json: @tap_statistic, status: :created, location: @tap_statistic
+      send_data @tap_statistic.generate_report_workbook.stream.string, filename: "report#{@tap_statistic.id}.xlsx",
+                                    disposition: 'attachment', status: :created, type: :json
     else
       render json: @tap_statistic.errors, status: :unprocessable_entity
     end
