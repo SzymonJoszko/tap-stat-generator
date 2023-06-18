@@ -5,6 +5,6 @@ services:
       - '.:/app'
     ports:
       - '3000:3000'
-    command: bash -c "rails s -b 0.0.0.0"
+    command: bash -c "(rake db:migrate:status 2>/dev/null || rake db:setup) && rake db:migrate && rails s -b 0.0.0.0"
     # command: bash -c "gem install rails && rails new . --api"
     container_name: tap_stat_generator_app

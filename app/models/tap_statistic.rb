@@ -1,0 +1,3 @@
+class TapStatistic < ApplicationRecord
+
+end
